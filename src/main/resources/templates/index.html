@@ -3,9 +3,19 @@
  <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <title>Home Page</title>
+<link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.2.0/css/bootstrap.min.css"
+      th:href="@{/webjars/bootstrap/3.2.0/css/bootstrap.min.css}"
+      rel="stylesheet" media="screen" /> 
+<script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.1/jquery.min.js"
+        th:src="@{/webjars/jquery/2.1.1/jquery.min.js}"></script>
+<link href="../static/css/style.css"
+          th:href="@{/css/style.css}"
+          rel="stylesheet" media="screen" />
 </head>
 <body>
- <h1>It works!</h1>
- <h2>Welcome to our page.</h2>
+	<div class="myCssClass">
+		<h1>It works!</h1>
+		<h2>Welcome to our page.</h2>
+	</div>
 </body>
 </html>
