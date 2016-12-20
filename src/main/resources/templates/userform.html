@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Welcome</title>
+<link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.2.0/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/3.2.0/css/bootstrap.min.css}" rel="stylesheet" media="screen" />
+<script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.1/jquery.min.js" th:src="@{/webjars/jquery/2.1.1/jquery.min.js}"></script>
+<link href="../static/assets/css/main.css" th:href="@{/assets/css/main.css}" rel="stylesheet" media="screen" />
+</head>
+<body>
+
+	<header id="header" class="alt" th:include ="_menus :: title-menu" />	
+	<nav id="nav" th:include ="_menus :: main-menu" />
+
+
+	<!-- Header -->
+	<header id="header" class="skel-layers-fixed">
+		<h1>
+			<a href="/">Szafbook</a>
+		</h1>
+		<a href="#nav">Menu</a>
+	</header>
+
+
+	<!-- Nav -->
+	<nav id="nav">
+		<ul class="links">
+			<li><a href="#">Home</a></li>
+			<li><a href="#">My Wardrobes</a></li>
+			<li><a href="#">Friends' Wardrobes</a></li>
+			<li><a href="#">Search</a></li>
+			<li><a href="#">Logout</a></li>
+		</ul>
+	</nav>
+
+
+	<section id="main" class="wrapper">
+		<div class="container">
+
+			<header class="major special">
+				<h2>New User</h2>
+				<p>Tell us about yourself</p>
+			</header>
+
+			<form action="#" th:action="@{/user}" th:object="${user}"
+				method="post">
+				<table>
+					<tr>
+						<td>Name:*</td>
+						<td><input type="text" th:field="*{nameame}" /></td>
+						<td th:if="${#fields.hasErrors('name')}"
+							th:errors="*{name}">Username Error</td>
+					</tr>
+					<tr>
+						<td>Surname:</td>
+						<td><input type="text" th:field="*{displayedName}" /></td>
+						<td th:if="${#fields.hasErrors('displayedName')}"
+							th:errors="*{displayedName}">Displayed Name Error</td>
+					</tr>
+					<tr>
+						<td>Login:</td>
+						<td><textarea th:field="*{login}">Tell us something about yourself</textarea></td>
+						<td th:if="${#fields.hasErrors('login')}"
+							th:errors="*{login}">Description Error</td>
+					</tr>
+					<tr>
+						<td>Email:*</td>
+						<td><input type="email" th:field="*{email}" /></td>
+						<td th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email
+							Error</td>
+					</tr>
+					<tr>
+						<td><button type="submit">Submit</button></td>
+					</tr>
+				</table>
+			</form>
+		</div>
+	</section>
+	
+	<div th:include ="_links :: security" />	
+	<footer id="footer" th:include ="_others :: footer" />
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="_others :: head" />
+<body>
+	<nav class="navbar navbar-inverse navbar-fixed-top" th:include ="_menus :: top-menu" />
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-12">
+
+<h1>Login in the Blog</h1>
+
+<form method="post" th:object="${loginForm}">
+  <div><label for="login">Username:</label></div>
+  <input id="login" type="text" name="login" th:value="*{login}" />
+  <span class="formError" th:if="${#fields.hasErrors('login')}"
+                                th:errors="*{login}">Invalid login</span>
+
+  <div><label for="password" th:value="*{login}">Password:</label></div>
+  <input id="password" type="password" name="password" th:value="*{password}" />
+  <span class="formError" th:if="${#fields.hasErrors('password')}"
+                                th:errors="*{password}">Invalid password</span>
+
+  <div><input type="submit" value="Login"/>
+  <a href="register.html" th:href="@{/users/register}">[Go to Register]</a></div>
+</form>
+        </div>
+      </div>
+    </div>
+<th:block th:include="_others :: scripts" />
+</body>
+</html>

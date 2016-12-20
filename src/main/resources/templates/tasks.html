@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="_others :: head" />
+<body>
+	<nav class="navbar navbar-inverse navbar-fixed-top" th:include ="_menus :: top-menu" />
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-12">
+<aside>
+<h2>Recent Posts</h2>
+<a href=“#” th:each=“p : ${allTasks}” th:text=“${p.title}” th:href=“@{/posts/view/{id}/(id=${p.id})}”>Work Begins on HTML5.1</a>
+</aside>
+        </div>
+      </div>
+    </div>
+<th:block th:include="_others :: scripts" />
+</body>
+</html>
