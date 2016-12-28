@@ -21,12 +21,12 @@ public class AccountController {
     @Autowired
     private LoginService loginService;
 
-    @RequestMapping("/user/login")
+    @RequestMapping("/login")
     public String showLoginForm(LoginForm loginForm) {
-        return "users/login";
+        return "login";
     }
 
-    @RequestMapping(value = "/user/login",
+    @RequestMapping(value = "/login",
             method = RequestMethod.POST)
     public String showLoginForm(
             @Valid LoginForm loginForm,
@@ -34,13 +34,13 @@ public class AccountController {
 
         if (bindingResult.hasErrors()) {
 //            notificationService.addErrorMessage("notify!");
-            return "user/login";
+            return "login";
         }
 
         if (! loginService.authenticate(loginForm.getLogin(),
                 loginForm.getPassword())) {
 //            notificationService.addErrorMessage("Invalid login");
-            return "user/login";
+            return "login";
         }
 
         // Login successful

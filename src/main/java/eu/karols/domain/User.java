@@ -8,17 +8,21 @@ import javax.persistence.*;
 @Entity
 @Table(name = "users")
 public class User {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false, updatable = false)
 	private Long id;
-	@Column(nullable = false, length = 30, unique = true)
+    @Column(name = "login", nullable = false, unique = true)
 	private String login;
-	@Column(length = 60)
-	private String password;
-	@Column(length = 100)
+    @Column(name = "name", nullable = false)
 	private String name;
-	@Column(length = 100)
+    @Column(name = "email", nullable = false, unique = true)
 	private String email;
+    @Column(name = "password", nullable = false)
+    private String password;
+    @Column(name = "role", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Role role;
 	@OneToMany(mappedBy = "author")
 	private Set<Task> tasks = new HashSet<>();
 
@@ -38,14 +42,6 @@ public class User {
 		this.login = login;
 	}
 
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
 	public String getName() {
 		return name;
 	}
@@ -61,21 +57,33 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
-	public User() {
+	
+	public String getPassword() {
+		return password;
+	}
+	
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
+	public Role getRole() {
+		return role;
 	}
 
-	public User(Long id, String login, String name, String email) {
-		this.id = id;
-		this.login = login;
-		this.name = name;
-		this.email = email;
+	public void setRole(Role role) {
+		this.role = role;
 	}
 
-	@Override
-	public String toString() {
-		return "User{" + "id=" + id + ", login='" + login + '\'' + ", password='" + password + '\''
-				+ ", name='" + name + ", email='" + email + '\'' + '}';
-	}
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", login='" + login +
+                ", name='" + name +
+                ", email='" + email.replaceFirst("@.*", "@***") +
+                ", passwordHash='" + password.substring(0, 10) +
+                ", role=" + role +
+                '}';
+    }
 
 }

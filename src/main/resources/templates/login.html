@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"><head>
+<head>
+    <meta charset="utf-8">
+    <title>Log in</title>
+<meta id="_csrf" name="_csrf" th:content="${_csrf.token}" type="org.springframework.security.web.csrf.CsrfToken" />
+<meta id="_csrf_header" name="_csrf_header" th:content="${_csrf.headerName}"/>
+</head>
+<body>
+<nav role="navigation">
+    <ul>
+        <li><a href="/">Home</a></li>
+    </ul>
+</nav>
+
+<h1>Log in</h1>
+
+<p>You can use: demo@localhost / demo</p>
+
+<form role="form" action="/login" method="post">
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+
+    <div>
+        <label for="login">Login</label>
+        <input type="login" name="login" id="login" required autofocus/>
+    </div>
+    <div>
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" required/>
+    </div>
+    <div>
+        <label for="remember-me">Remember me</label>
+        <input type="checkbox" name="remember-me" id="remember-me"/>
+    </div>
+    <button type="submit">Sign in</button>
+</form>
+</body>
+</html>
