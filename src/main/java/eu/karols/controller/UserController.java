@@ -40,7 +40,7 @@ public class UserController {
     @RequestMapping("/user/{id}")
     public ModelAndView getUserPage(@PathVariable Long id) {
         LOGGER.debug("Getting user page for user={}", id);
-        return new ModelAndView("user", "user", userService.getUserById(id)
+        return new ModelAndView("user/user", "user", userService.getUserById(id)
                 .orElseThrow(() -> new NoSuchElementException(String.format("User=%s not found", id))));
     }
 
@@ -48,7 +48,7 @@ public class UserController {
     @RequestMapping(value = "/user/create", method = RequestMethod.GET)
     public ModelAndView getUserCreatePage() {
         LOGGER.debug("Getting user create form");
-        return new ModelAndView("user_create", "form", new UserCreateForm());
+        return new ModelAndView("admin/user_create", "form", new UserCreateForm());
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
@@ -57,7 +57,7 @@ public class UserController {
         LOGGER.debug("Processing user create form={}, bindingResult={}", form, bindingResult);
         if (bindingResult.hasErrors()) {
             // failed validation
-            return "user_create";
+            return "admin/user_create";
         }
         try {
             userService.create(form);
@@ -66,10 +66,17 @@ public class UserController {
             // at the same time and form validation has passed for more than one of them.
             LOGGER.warn("Exception occurred when trying to save the user, assuming duplicate login", e);
             bindingResult.reject("login.exists", "Login already exists");
-            return "user_create";
+            return "admin/user_create";
         }
         // ok, redirect
         return "redirect:/users";
     }
 
+	@PreAuthorize("hasAuthority('ADMIN')")
+	@RequestMapping("/user/delete/{id}")
+	public String deleteUser(@PathVariable("id") Long id) {
+		LOGGER.debug("Deleted user " + id);
+	    userService.deleteById(id);
+	    return "redirect:/users";
+	}
 }

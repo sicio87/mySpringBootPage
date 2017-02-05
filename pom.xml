@@ -6,7 +6,7 @@
 	<groupId>eu.karols</groupId>
 	<artifactId>springboot</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 
 	<name>mySpringBootPage</name>
 	<description>Demo project for Spring Boot</description>
@@ -38,14 +38,12 @@
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
 		<!-- Widoki -->
-<!-- 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-thymeleaf</artifactId>
-		</dependency> -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-freemarker</artifactId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
+		<!-- <dependency> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-starter-freemarker</artifactId> 
+			</dependency> -->
 		<!-- Rozwiązuje problem z widokiem HTML5 + Bootstrap -->
 		<dependency>
 			<groupId>net.sourceforge.nekohtml</groupId>
@@ -87,6 +85,42 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
+		<!-- Maven artifact identifier for Hibernate Search -->
+<!-- 		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-search-orm</artifactId>
+			<version>4.5.1.Final</version>
+		</dependency> -->
+
+		<!-- Optional: to use JPA 2.1 -->
+<!-- 		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+		</dependency> -->
+		
+		
+<dependency>
+    <groupId>org.hibernate</groupId>
+    <artifactId>hibernate-search-orm</artifactId>
+    <version>5.5.4.Final</version>
+</dependency>
+
+<dependency>
+    <groupId>org.hibernate</groupId>
+    <artifactId>hibernate-core</artifactId>
+    <version>5.1.1.Final</version>
+</dependency>
+
+<dependency>
+    <groupId>org.hibernate</groupId>
+    <artifactId>hibernate-entitymanager</artifactId>
+    <version>5.1.1.Final</version>
+</dependency>
+
+		<!-- <dependency> <groupId>joda-time</groupId> <artifactId>joda-time</artifactId> 
+			<version>2.9.7</version> </dependency> -->
+		<!-- <dependency> <groupId>uk.co.gcwilliams</groupId> <artifactId>jodatime-thymeleaf-dialect</artifactId> 
+			<version>1.3</version> </dependency> -->
 		<!-- WebJars -->
 		<dependency>
 			<groupId>org.webjars</groupId>
@@ -98,6 +132,11 @@
 			<artifactId>jquery</artifactId>
 			<version>2.1.1</version>
 		</dependency>
+		<!-- Raspberry Pi -->
+		<!-- <dependency> <groupId>com.pi4j</groupId> <artifactId>pi4j-core</artifactId> 
+			<version>${project.version}</version> </dependency> -->
+		<!-- <dependency> <groupId>org.webjars</groupId> <artifactId>tinymce</artifactId> 
+			<version>4.2.1</version> </dependency> -->
 	</dependencies>
 
 	<build>

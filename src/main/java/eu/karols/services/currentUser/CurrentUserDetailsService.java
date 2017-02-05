@@ -1,4 +1,4 @@
-package eu.karols.services.currentuser;
+package eu.karols.services.currentUser;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

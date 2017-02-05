@@ -8,21 +8,23 @@ import javax.persistence.*;
 @Entity
 @Table(name = "users")
 public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false, updatable = false)
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id", nullable = false, updatable = false)
 	private Long id;
-    @Column(name = "login", nullable = false, unique = true)
+	@Column(name = "login", nullable = false, unique = true)
 	private String login;
-    @Column(name = "name", nullable = false)
+	@Column(name = "name", nullable = false)
 	private String name;
-    @Column(name = "email", nullable = false, unique = true)
+	@Column(name = "email", nullable = false, unique = true)
 	private String email;
-    @Column(name = "password", nullable = false)
-    private String password;
-    @Column(name = "role", nullable = false)
-    @Enumerated(EnumType.STRING)
-    private Role role;
+	@Column(name = "password", nullable = false)
+	private String password;
+	@Column(name = "role", nullable = false)
+	@Enumerated(EnumType.STRING)
+	private Role role;
+	@OneToMany(mappedBy = "author")
+	private Set<Post> posts = new HashSet<>();
 	@OneToMany(mappedBy = "author")
 	private Set<Task> tasks = new HashSet<>();
 
@@ -57,15 +59,15 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
+
 	public String getPassword() {
 		return password;
 	}
-	
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
+
 	public Role getRole() {
 		return role;
 	}
@@ -74,16 +76,19 @@ public class User {
 		this.role = role;
 	}
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", login='" + login +
-                ", name='" + name +
-                ", email='" + email.replaceFirst("@.*", "@***") +
-                ", passwordHash='" + password.substring(0, 10) +
-                ", role=" + role +
-                '}';
-    }
+	public Set<Post> getPosts() {
+		return posts;
+	}
+
+	public void setPosts(Set<Post> posts) {
+		this.posts = posts;
+	}
+
+	@Override
+	public String toString() {
+		return "User{" + "id=" + id + ", login='" + login + ", name='" + name + ", email='"
+				+ email.replaceFirst("@.*", "@***") + ", passwordHash='" + password.substring(0, 10) + ", role=" + role
+				+ '}';
+	}
 
 }

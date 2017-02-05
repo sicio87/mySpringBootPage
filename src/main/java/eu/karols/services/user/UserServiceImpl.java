@@ -66,4 +66,13 @@ public class UserServiceImpl implements UserService {
         return userRepository.save(user);
     }
 
+	@Override
+	public User findUserByLogin(String login) {
+		return userRepository.findUserByLogin(login);
+	}
+
+	@Override
+	public void deleteById(Long id) {
+		this.userRepository.delete(id);
+	}
 }

@@ -1,4 +1,4 @@
-package eu.karols.services.currentuser;
+package eu.karols.services.currentUser;
 
 import eu.karols.domain.CurrentUser;
 
